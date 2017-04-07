@@ -10,7 +10,7 @@ class AcceptBaseImage extends Component {
   }
 
   handleClick () {
-    fetch(`//localhost:8080/tests/${this.props.id}/accept`, {
+    fetch(`${process.env.OPTICIAN_API_URL}/tests/${this.props.id}/accept`, {
       method: 'POST',
       header: {
         'Accept': 'application/json',
@@ -28,7 +28,7 @@ class AcceptBaseImage extends Component {
 
   render () {
     return (
-      <button onClick={this.handleClick}>Accept base image</button>
+      <button onClick={this.handleClick}>Accept base image{}</button>
     )
   }
 }

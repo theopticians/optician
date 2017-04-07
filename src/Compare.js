@@ -79,7 +79,7 @@ class Compare extends Component {
   }
 
   fetchTest (id) {
-    fetch(`//localhost:8080/tests/${id}`)
+    fetch(`${process.env.OPTICIAN_API_URL}/tests/${id}`)
       .then(function (response) {
         if (response.status >= 400) {
           throw new Error('Bad response from server')
@@ -125,9 +125,9 @@ class Compare extends Component {
             }
             { this.state.result &&
               <div>
-                <img className='bg-image' src={`//localhost:8080/image/${this.state.result.image}`} alt='original base' />
-                <img className='bg-image' src={`//localhost:8080/image/${this.state.result.baseimage}`} alt='original base' />
-                <img className='bg-image' src={`//localhost:8080/image/${this.state.result.diffimage}`} alt='original base' />
+                <img className='bg-image' src={`${process.env.OPTICIAN_API_URL}/image/${this.state.result.image}`} alt='original base' />
+                <img className='bg-image' src={`${process.env.OPTICIAN_API_URL}/image/${this.state.result.baseimage}`} alt='original base' />
+                <img className='bg-image' src={`${process.env.OPTICIAN_API_URL}/image/${this.state.result.diffimage}`} alt='original base' />
               </div>
             }
           </span>
