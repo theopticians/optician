@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class Save extends Component {
+class SaveMasks extends Component {
   constructor (...args) {
     super(...args)
 
@@ -18,5 +18,5 @@ class Save extends Component {
   }
 }
 
-export default Save
+export default SaveMasks
 

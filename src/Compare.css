@@ -1,0 +1,12 @@
+.box {
+  background-color: red
+}
+
+.image {
+  position: relative;
+  display: inline-block;
+}
+
+.bg-image {
+  user-select: none;
+}
