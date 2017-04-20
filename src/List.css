@@ -1,0 +1,6 @@
+.root {
+  text-align: left;
+  list-style-type: none;
+  display: grid;
+  grid-gap: 10px;
+}
