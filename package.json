@@ -6,6 +6,7 @@
     "es6-promise": "^4.1.0",
     "isomorphic-fetch": "^2.2.1",
     "jimp": "^0.2.27",
+    "moment": "^2.18.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-rnd": "^4.2.2"

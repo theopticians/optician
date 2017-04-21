@@ -1,4 +1,5 @@
 import React, { PropTypes, Component } from 'react'
+import moment from 'moment'
 
 import './List.css'
 
@@ -20,6 +21,9 @@ class List extends Component {
           this.props.items.map((result) => {
             return <li key={result.id}>
               <a href='#' onClick={() => this.handleClick(result.id)}>{result.id}</a>
+              <p>
+                {result.diffscore === 0 ? 'OK' : 'FAILED'} | {moment(result.timestamp).fromNow()} 
+              </p>
             </li>
           })
         }
