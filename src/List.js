@@ -17,9 +17,9 @@ class List extends Component {
     return (
       <ul className='root'>
         {
-          this.props.items.map((item) => {
-            return <li key={item}>
-              <a href='#' onClick={() => this.handleClick(item)}>{item}</a>
+          this.props.items.map((result) => {
+            return <li key={result.id}>
+              <a href='#' onClick={() => this.handleClick(result.id)}>{result.id}</a>
             </li>
           })
         }
