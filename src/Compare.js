@@ -79,7 +79,7 @@ class Compare extends Component {
   }
 
   fetchTest (id) {
-    fetch(`${process.env.OPTICIAN_API_URL}/tests/${id}`)
+    fetch(`${process.env.OPTICIAN_API_URL}/results/${id}`)
       .then(function (response) {
         if (response.status >= 400) {
           throw new Error('Bad response from server')
