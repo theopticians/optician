@@ -88,7 +88,7 @@ class Compare extends Component {
         return response.json()
       })
       .then((compareResult) => {
-        this.setState({ result: compareResult })
+        this.setState({ result: compareResult, id: id })
       })
   }
 
