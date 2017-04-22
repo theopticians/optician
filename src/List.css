@@ -4,4 +4,30 @@
   display: grid;
   grid-gap: 10px;
   font-family: monospace;
+  margin: 10px;
+  padding: 0;
 }
+
+.result {
+  padding-left: 6px;
+  cursor: pointer;
+}
+
+.result.passed {
+  border-left: 4px solid green;
+  background-color: #ddefdd;
+}
+
+.result.failed {
+  border-left: 4px solid red;
+  background-color: #ffc1c1;
+}
+
+.time {
+  margin: 0;
+}
+
+.id {
+  margin: 0;
+}
+

@@ -19,10 +19,16 @@ class List extends Component {
       <ul className='root'>
         {
           this.props.items.map((result) => {
-            return <li key={result.id}>
-              <a href='#' onClick={() => this.handleClick(result.id)}>{result.id}</a>
-              <p>
-                {result.diffscore === 0 ? 'OK' : 'FAILED'} | {moment(result.timestamp).fromNow()} 
+            return <li
+              className={'result ' + (result.diffscore === 0 ? 'passed' : 'failed')}
+              key={result.id}
+              onClick={() => this.handleClick(result.id)}
+            >
+              <p className='id'>
+                {result.id} 
+              </p>
+              <p className='time'>
+                {moment(result.timestamp).fromNow()} 
               </p>
             </li>
           })
