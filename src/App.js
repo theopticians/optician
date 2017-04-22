@@ -43,17 +43,17 @@ class App extends Component {
   render () {
     return (
       <div className='App'>
-        <h1>Optician</h1>
-        <div className='container'>
+        <div className='header'>
+          <h1>Optician</h1>
+        </div>
+        <div className='nav-tests'>
           { this.state.tests.length &&
-            <div className='nav-tests'>
               <List items={this.state.tests} onClick={this.handleClick} />
-            </div>
           }
+        </div>
+        <div className='content'>
           { this.state.id &&
-            <div className='content'>
               <Compare id={this.state.id} />
-            </div>
           }
         </div>
       </div>

@@ -1,20 +1,22 @@
 .App {
-  text-align: center;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  grid-template-rows: auto;
+  grid-template-areas: 
+  "header header"
+  "sidebar content"
+  "footer footer";
 }
 
-.container {
-  display: flex;
+.content {
+  grid-area: content;
 }
 
-.box {
-  background-color: red
+.nav-tests {
+  grid-area: sidebar;
 }
 
-.image {
-  position: relative;
-  display: inline-block;
+.header {
+  grid-area: header;
 }
 
-.bg-image {
-  user-select: none;
-}
