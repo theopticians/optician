@@ -12,9 +12,19 @@
   "sidebar main";
 }
 
-.compare {
+.main-wrapper {
   grid-area: main;
+  position: relative;
+}
+
+.main {
+  position: absolute;
+  top:0;
+  left: 0;
+  bottom: 0;
+  right: 0;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .nav-tests {

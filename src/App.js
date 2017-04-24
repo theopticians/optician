@@ -53,10 +53,12 @@ class App extends Component {
               <List items={this.state.tests} selected={this.state.id} onClick={this.handleClick} />
           }
         </div>
-        <div className='compare'>
-          { this.state.id &&
-              <Compare id={this.state.id} />
-          }
+        <div className='main-wrapper'>
+          <div className='main'>
+            { this.state.id &&
+                <Compare id={this.state.id} />
+            }
+          </div>
         </div>
       </div>
     )
