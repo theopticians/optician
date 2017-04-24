@@ -44,14 +44,16 @@ class App extends Component {
     return (
       <div className='App'>
         <div className='header'>
+          <div className='logo'>
+          </div>
           <h1>Optician</h1>
         </div>
         <div className='nav-tests'>
           { this.state.tests.length &&
-              <List items={this.state.tests} onClick={this.handleClick} />
+              <List items={this.state.tests} selected={this.state.id} onClick={this.handleClick} />
           }
         </div>
-        <div className='content'>
+        <div className='compare'>
           { this.state.id &&
               <Compare id={this.state.id} />
           }

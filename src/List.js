@@ -15,12 +15,17 @@ class List extends Component {
   }
 
   render () {
+    const {selected} = this.props
     return (
       <ul className='root'>
         {
           this.props.items.map((result) => {
             return <li
-              className={'result ' + (result.diffscore === 0 ? 'passed' : 'failed')}
+              className={[
+                'result',
+                result.diffscore === 0 ? 'passed' : 'failed',
+                result.id === selected ? 'active' : ''
+              ].join(' ')}
               key={result.id}
               onClick={() => this.handleClick(result.id)}
             >

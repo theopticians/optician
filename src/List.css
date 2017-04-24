@@ -1,26 +1,37 @@
 .root {
+  height: 100%;
   text-align: left;
   list-style-type: none;
-  display: grid;
-  grid-gap: 10px;
   font-family: monospace;
-  margin: 10px;
+  margin: 0px;
   padding: 0;
+
+  background: rgb(57, 57, 57);
+  color: white;
+  border-right: 1px solid black;
 }
 
 .result {
-  padding-left: 6px;
+  padding: 6px;
   cursor: pointer;
 }
 
 .result.passed {
-  border-left: 4px solid green;
-  background-color: #ddefdd;
+  border-left: 4px solid #297d29;
+  background-color: rgba(0, 144, 0, 0.2);
+}
+
+.result.passed.active {
+  background-color: #297d29;
 }
 
 .result.failed {
-  border-left: 4px solid red;
-  background-color: #ffc1c1;
+  border-left: 4px solid #a02525;;
+  background-color: rgba(255, 0, 0, 0.2);
+}
+
+.result.failed.active {
+  background-color: #a02525;;
 }
 
 .time {
