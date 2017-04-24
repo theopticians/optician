@@ -7,6 +7,7 @@ import './Compare.css'
 
 import SaveMasks from './SaveMasks'
 import AcceptBaseImage from './AcceptBaseImage'
+import ImageCompare from './ImageCompare.js'
 
 const initialPosition = {
   x: 0,
@@ -111,26 +112,24 @@ class Compare extends Component {
           <AcceptBaseImage id={this.props.id} />
         </div>
         <div className='content'>
-          <span className='image'>
-            { this.state.masks && this.state.masks.map((mask, i) => {
-              return <Rnd
-                key={i}
-                initial={initialPosition}
-                style={style}
-                bounds={'parent'}
-                onResizeStop={(dir, dim) => this.onResize(i, dim)}
-                onDragStop={(e, ui) => this.onDragStop(i, ui)}
+          { this.state.masks && this.state.masks.map((mask, i) => {
+            return <Rnd
+              key={i}
+              initial={initialPosition}
+              style={style}
+              bounds={'parent'}
+              onResizeStop={(dir, dim) => this.onResize(i, dim)}
+              onDragStop={(e, ui) => this.onDragStop(i, ui)}
+            />
+          })
+          }
+          { this.state.result &&
+              <ImageCompare
+                image={this.state.result.image}
+                baseimage={this.state.result.baseimage}
+                diffimage={this.state.result.diffimage}
               />
-            })
-            }
-            { this.state.result &&
-              <div>
-                <img className='bg-image' src={`${process.env.OPTICIAN_API_URL}/image/${this.state.result.image}`} alt='original base' />
-                <img className='bg-image' src={`${process.env.OPTICIAN_API_URL}/image/${this.state.result.baseimage}`} alt='original base' />
-                <img className='bg-image' src={`${process.env.OPTICIAN_API_URL}/image/${this.state.result.diffimage}`} alt='original base' />
-              </div>
-            }
-          </span>
+          }
         </div>
       </div>
     )

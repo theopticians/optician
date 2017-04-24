@@ -1,0 +1,27 @@
+.image-compare {
+  display: flex;
+  height: 400px;
+  background: grey;
+  padding: 3px;
+}
+
+.image.diff {
+  mix-blend-mode: difference;
+}
+
+.image-wrapper {
+  flex: 1;
+  position: relative;
+  margin: 3px;
+}
+
+.image {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+   background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
