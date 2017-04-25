@@ -3,11 +3,11 @@ import Rnd from 'react-rnd'
 
 import fetch from 'isomorphic-fetch'
 
-import './Compare.css'
+import $ from './Compare.css'
 
 import SaveMasks from './SaveMasks'
 import AcceptBaseImage from './AcceptBaseImage'
-import ImageCompare from './ImageCompare.js'
+import ImageCompare from './ImageCompare'
 
 const initialPosition = {
   x: 0,
@@ -105,13 +105,13 @@ class Compare extends Component {
 
   render () {
     return (
-      <div className='compare'>
-        <div className='menu'>
+      <div className={$.compare}>
+        <div className={$.menu}>
           <SaveMasks box={this.state.masks} />
           <button onClick={this.addMask}>Add new mask</button>
           <AcceptBaseImage id={this.props.id} />
         </div>
-        <div className='content'>
+        <div className={$.content}>
           { this.state.masks && this.state.masks.map((mask, i) => {
             return <Rnd
               key={i}

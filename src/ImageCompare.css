@@ -1,4 +1,4 @@
-.image-compare {
+.imageCompare {
   display: flex;
   height: 400px;
   background: grey;
@@ -9,7 +9,7 @@
   mix-blend-mode: difference;
 }
 
-.image-wrapper {
+.imageWrapper {
   flex: 1;
   position: relative;
   margin: 3px;
