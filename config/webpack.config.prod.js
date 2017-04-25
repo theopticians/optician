@@ -141,11 +141,7 @@ module.exports = {
           'style',
           'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss',
           extractTextPluginOptions
-        ),
-        query: {
-          modules: true,
-          localIdentName: '[name]__[local]___[hash:base64:5]'
-        }
+        )
         // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
       },
       // JSON is not enabled by default in Webpack but both Node and Browserify
