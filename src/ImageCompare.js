@@ -1,18 +1,19 @@
 import React, { Component } from 'react'
+import cx from 'classnames'
 
-import './ImageCompare.css'
+import $ from './ImageCompare.css'
 
 class ImageCompare extends Component {
   render () {
     return (
-      <div className='image-compare'>
-        <div className='image-wrapper'>
-          <div className='image' style={{backgroundImage: `url(${process.env.OPTICIAN_API_URL}/image/${this.props.baseimage})`}}/>
-          <div className='image diff' style={{backgroundImage: `url(${process.env.OPTICIAN_API_URL}/image/${this.props.diffimage})`}}/>
+      <div className={$.imageCompare}>
+        <div className={$.imageWrapper}>
+          <div className={$.image} style={{backgroundImage: `url(${process.env.OPTICIAN_API_URL}/image/${this.props.baseimage})`}}/>
+          <div className={cx($.image, $.diff)} style={{backgroundImage: `url(${process.env.OPTICIAN_API_URL}/image/${this.props.diffimage})`}}/>
         </div>
-        <div className='image-wrapper'>
-          <div className='image' style={{backgroundImage: `url(${process.env.OPTICIAN_API_URL}/image/${this.props.image})`}}/>
-          <div className='image diff' style={{backgroundImage: `url(${process.env.OPTICIAN_API_URL}/image/${this.props.diffimage})`}}/>
+        <div className={$.imageWrapper}>
+          <div className={$.image} style={{backgroundImage: `url(${process.env.OPTICIAN_API_URL}/image/${this.props.image})`}}/>
+          <div className={cx($.image, $.diff)} style={{backgroundImage: `url(${process.env.OPTICIAN_API_URL}/image/${this.props.diffimage})`}}/>
         </div>
       </div>
 

@@ -1,7 +1,8 @@
 import React, { PropTypes, Component } from 'react'
 import moment from 'moment'
+import cx from 'classnames'
 
-import './List.css'
+import $ from './List.css'
 
 class List extends Component {
   constructor (...args) {
@@ -17,22 +18,23 @@ class List extends Component {
   render () {
     const {selected} = this.props
     return (
-      <ul className='root'>
+      <ul className={$.root}>
         {
           this.props.items.map((result) => {
+            const style = cx($.result,{
+              [$.passed]: result.diffscore === 0,
+              [$.failed]: result.diffscore > 0,
+              [$.active]: result.id === selected
+            })
             return <li
-              className={[
-                'result',
-                result.diffscore === 0 ? 'passed' : 'failed',
-                result.id === selected ? 'active' : ''
-              ].join(' ')}
+              className={style}
               key={result.id}
               onClick={() => this.handleClick(result.id)}
             >
-              <p className='id'>
+              <p className={$.id}>
                 {result.id} 
               </p>
-              <p className='time'>
+              <p className={$.time}>
                 {moment(result.timestamp).fromNow()} 
               </p>
             </li>

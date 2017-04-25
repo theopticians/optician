@@ -12,7 +12,7 @@
   "sidebar main";
 }
 
-.main-wrapper {
+.mainWrapper {
   grid-area: main;
   position: relative;
 }
@@ -27,7 +27,7 @@
   overflow-x: hidden;
 }
 
-.nav-tests {
+.navTests {
   grid-area: sidebar;
 }
 

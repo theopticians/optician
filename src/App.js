@@ -4,7 +4,7 @@ import List from './List'
 
 import fetch from 'isomorphic-fetch'
 
-import './App.css'
+import $ from './App.css'
 
 class App extends Component {
   constructor (...args) {
@@ -42,19 +42,19 @@ class App extends Component {
 
   render () {
     return (
-      <div className='App'>
-        <div className='header'>
-          <div className='logo'>
+      <div className={$.App}>
+        <div className={$.header}>
+          <div className={$.logo}>
           </div>
           <h1>Optician</h1>
         </div>
-        <div className='nav-tests'>
+        <div className={$.navTests}>
           { this.state.tests.length &&
               <List items={this.state.tests} selected={this.state.id} onClick={this.handleClick} />
           }
         </div>
-        <div className='main-wrapper'>
-          <div className='main'>
+        <div className={$.mainWrapper}>
+          <div className={$.main}>
             { this.state.id &&
                 <Compare id={this.state.id} />
             }

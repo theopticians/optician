@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
+    "classnames": "^2.2.5",
     "es6-promise": "^4.1.0",
     "isomorphic-fetch": "^2.2.1",
     "jimp": "^0.2.27",
