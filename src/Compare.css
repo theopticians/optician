@@ -1,0 +1,43 @@
+.root{
+	position: relative;
+	height: 100%;
+}
+
+.toolbar {
+	height: 60px;
+	position: absolute;
+	background: #D4D4D4;
+	color: #4F4F4F;
+	border-radius: 0 0px 3px 3px;
+	left: 80px;
+	top: 0;
+	right: 80px;
+	box-shadow: 0 1px 4px 0 rgba(0,0,0,0.1);
+	z-index: 2;
+	display: flex;
+}
+
+.toolbar .button {
+	width: 60px;
+	height: 50px;
+	border: none;
+	outline: none;
+	background: rgb(212, 212, 212);
+	font-size: 14px;
+	font-weight: 500;
+	text-align: center;
+	margin: 5px;
+	padding: 0px;
+	line-height: 20px;
+}
+
+.toolbar .button:hover {
+	background: rgba(255, 255, 255, 0.5);
+	border-radius: 3px;
+}
+
+
+.content {
+	height: 100%;
+}
+

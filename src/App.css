@@ -31,8 +31,10 @@
 
 .navTests {
   grid-area: sidebar;
+	z-index: 4;
 }
 
 .header {
   grid-area: header;
+	z-index: 3;
 }
