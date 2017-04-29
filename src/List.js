@@ -4,6 +4,29 @@ import cx from 'classnames'
 
 import $ from './List.css'
 
+class ListItem extends Component {
+  render(){
+    const {result, active} = this.props
+    const style = cx($.result,{
+      [$.passed]: result.diffscore === 0,
+      [$.failed]: result.diffscore > 0,
+      [$.active]: active
+    })
+    return <li
+      className={style}
+      key={result.id}
+      onClick={() => this.handleClick(result.id)}
+    >
+      <p className={$.id}>
+        {result.id} 
+      </p>
+      <p className={$.time}>
+        {moment(result.timestamp).fromNow()} 
+      </p>
+    </li>
+  }
+}
+
 class List extends Component {
   constructor (...args) {
     super(...args)
@@ -21,23 +44,7 @@ class List extends Component {
       <ul className={$.root}>
         {
           this.props.items.map((result) => {
-            const style = cx($.result,{
-              [$.passed]: result.diffscore === 0,
-              [$.failed]: result.diffscore > 0,
-              [$.active]: result.id === selected
-            })
-            return <li
-              className={style}
-              key={result.id}
-              onClick={() => this.handleClick(result.id)}
-            >
-              <p className={$.id}>
-                {result.id} 
-              </p>
-              <p className={$.time}>
-                {moment(result.timestamp).fromNow()} 
-              </p>
-            </li>
+            return <ListItem result={result} active={result.id === selected} />
           })
         }
       </ul>

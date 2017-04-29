@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Compare from './Compare'
 import List from './List'
+import Header from './Header'
 
 import fetch from 'isomorphic-fetch'
 
@@ -44,9 +45,7 @@ class App extends Component {
     return (
       <div className={$.App}>
         <div className={$.header}>
-          <div className={$.logo}>
-          </div>
-          <h1>Optician</h1>
+          <Header />
         </div>
         <div className={$.navTests}>
           { this.state.tests.length &&
