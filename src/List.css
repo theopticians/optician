@@ -1,44 +1,68 @@
 .root {
-  height: 100%;
-  text-align: left;
-  list-style-type: none;
-  font-family: monospace;
-  margin: 0px;
-  padding: 0;
+	height: 100%;
+	text-align: left;
+	list-style-type: none;
+	font-size: 14px;
+	margin: 0px;
+	padding: 0;
 
-  background: rgb(57, 57, 57);
-  color: white;
-  border-right: 1px solid black;
+	background: #3B2F47;
+
+	color: #F6F6F6;
 }
 
 .result {
-  padding: 6px;
-  cursor: pointer;
+	height: 60px;
+	padding: 6px;
+	cursor: pointer;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: 13px;
+	font-size: 12px;
+	position: relative;
 }
 
-.result.passed {
-  border-left: 4px solid #297d29;
-  background-color: rgba(0, 144, 0, 0.2);
-}
-
-.result.passed.active {
-  background-color: #297d29;
+.result.active{
+background: rgb(80, 67, 93);
+  box-shadow: 0 0 5px 0 rgba(0,0,0,0.16);
 }
 
 .result.failed {
-  border-left: 4px solid #a02525;;
-  background-color: rgba(255, 0, 0, 0.2);
+	color: #FF7171;
 }
 
-.result.failed.active {
-  background-color: #a02525;;
+.result .failedIndicator{
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background: #FF7171;
+	position: absolute;
+	right: 20px;
+	top: 20px;
+
 }
+
+.triangle{
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 30px 0 30px 10px;
+	border-color: transparent transparent transparent rgb(80, 67, 93);
+	position: absolute;
+	top: 0;
+	right: -10px;
+	z-index: 2;
+
+}
+
 
 .time {
-  margin: 0;
+	margin: 0;
+	color: rgb(159, 146, 173)
 }
 
 .id {
-  margin: 0;
+	margin: 0;
 }
 
