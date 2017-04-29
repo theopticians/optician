@@ -4,8 +4,14 @@ import cx from 'classnames'
 import $ from './ImageCompare.css'
 
 class ImageCompare extends Component {
+	constructor () {
+		super()
+
+		this.state = { scale: 0.9, translate: {x: 0, y: 0} }
+	}
+
   render () {
-    let transformStyle = 'scale(0.9)'
+    let transformStyle = `scale(${this.state.scale}) translateX(${this.state.translate.x}px) translateY(${this.state.translate.y}px)`
 
     return (
       <div className={$.imageCompare}>
