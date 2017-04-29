@@ -50,7 +50,7 @@ class Compare extends Component {
   }
 
   acceptBaseImage () {
-    fetch(`${process.env.OPTICIAN_API_URL}/tests/${this.props.id}/accept`, {
+    fetch(`${process.env.OPTICIAN_API_URL}/results/${this.props.id}/accept`, {
       method: 'POST',
       header: {
         'Accept': 'application/json',
