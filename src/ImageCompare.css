@@ -14,8 +14,11 @@
 	overflow: hidden;
 }
 
-.image {
+.smoothTransform {
 	transition: 0.3s ease transform;
+}
+
+.image {
 	position: absolute;
 	left: 0;
 	top: 0;
