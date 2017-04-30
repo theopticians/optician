@@ -32,6 +32,7 @@
 .navTests {
   grid-area: sidebar;
 	z-index: 4;
+  box-shadow: 2px 0 2px 0 rgba(0,0,0,0.15);
 }
 
 .header {
