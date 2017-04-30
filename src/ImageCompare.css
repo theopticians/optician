@@ -1,18 +1,27 @@
 .imageCompare {
   display: flex;
   height: 100%;
-  background: grey;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAIAAAC1nk4lAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4QQeFSQByIhUQAAAARZJREFUaN7V2EkOwkAQA0DTQpnn58hjgyIuSEDIMksvbj/AKvno2zw/YJNleVrUljIJUqWUSUQknRiApBOnQX+Lc6A34gTofzE7eldMjT4S86JPxKToczEj+lJMh64Rc6ErxUToejELuklMgW4Vx6M7xMHoPnEkulschh4Rx6AHxQHocbE3WkXsitYS+6EVxU5oXbEHWl1sjrYQ26KNxADudt8mgHVdLcol18ZWaGuxPtpBrIz2EWui3cRqaE+xDtpZrID2F4+iQ8RD6ChxPzpQ3ImOFfegw8XNaAZxG5pE3IDmEdeiqcRVaDbxNZpQfIHmFJ+hacWHaGbxPppcvIPmF2/RKcQ/6CziDzqR+I3OJQYg6cQAXuvYERnGkJBPAAAAAElFTkSuQmCC');
+
+}
+
+.imageSplit:first-child {
+  border-right: 1px solid #3b2f47;
+}
+
+.imageSplit:last-child {
+  border-left: 1px solid #3b2f47;
 }
 
 
 .imageSplit {
   flex: 1;
-	position: relative;
-	overflow: hidden;
+  position: relative;
+  overflow: hidden;
 }
 
 .smoothTransform {
-	transition: 0.3s ease transform;
+  transition: 0.3s ease transform;
 }
 
 .imageWrapper {
