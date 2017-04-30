@@ -14,12 +14,26 @@ class ImageCompare extends Component {
     this.handleMouseDown = this.handleMouseDown.bind(this)
     this.handleMouseUp = this.handleMouseUp.bind(this)
     this.handleMouseMove = this.handleMouseMove.bind(this)
+    this.handleWheel = this.handleWheel.bind(this)
   }
 
   onMaskDragStart (e) {
     if (typeof e.stopPropagation == "function") {
       e.stopPropagation()
     }
+  }
+
+  handleWheel (e) {
+    let newScale =  this.state.scale / (1 + e.deltaY * 0.002)
+    if (newScale > 3) {
+      newScale = 3
+    }
+
+    if (newScale < 0.2) {
+      newScale = 0.2
+    }
+
+    this.setState({scale: newScale})
   }
 
   handleMouseDown () {
@@ -32,6 +46,14 @@ class ImageCompare extends Component {
 
   handleMouseMove (e) {
     if (this.state.dragging) {
+      if (e.buttons <= 0) {
+        this.setState({ dragging: false })
+        return
+      }
+
+      console.log(this.state.translate.x + (e.screenX - this.lastMouseX) / this.state.scale,
+          this.state.translate.y + (e.screenY - this.lastMouseY) / this.state.scale)
+
       this.setState({
         translate: {
           x: this.state.translate.x + (e.screenX - this.lastMouseX) / this.state.scale,
@@ -55,6 +77,7 @@ class ImageCompare extends Component {
         onMouseDown={this.handleMouseDown}
         onMouseUp={this.handleMouseUp}
         onMouseMove={this.handleMouseMove}
+        onWheel={this.handleWheel}
       >
         <div className={$.imageSplit} >
           <div className={cx($.imageWrapper, smoothTransform)}  style={{transform: transformStyle}} >

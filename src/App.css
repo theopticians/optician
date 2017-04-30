@@ -3,6 +3,7 @@
 * { box-sizing: border-box }
 
 .App {
+  user-select: none;
   font-family: 'Montserrat', sans-serif;
   height: 100%;
   overflow: hidden;
