@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Rnd from 'react-rnd'
 
 import fetch from 'isomorphic-fetch'
 
@@ -14,23 +13,11 @@ const initialPosition = {
   height: 50
 }
 
-const maskStyle = {
-  textAlign: 'center',
-  border: '2px solid rgb(255, 113, 113)',
-  borderRadius: '3px',
-  color: '#fff',
-  display: 'flex',
-  alignItems: 'center',
-  backgroundColor: 'rgba(255, 113, 113, 0.5)',
-  justifyContent: 'center'
-}
-
 class Compare extends Component {
   constructor (...args) {
     super(...args)
 
-    this.onResize = this.onResize.bind(this)
-    this.onDragStop = this.onDragStop.bind(this)
+    this.handleMaskChange = this.handleMaskChange.bind(this)
     this.addMask = this.addMask.bind(this)
     this.acceptBaseImage = this.acceptBaseImage.bind(this)
     this.saveMasks = this.saveMasks.bind(this)
@@ -70,34 +57,8 @@ class Compare extends Component {
     console.log(this.props.box)
   }
 
-  onResize (id, dimensions) {
-    const masks = this.state.masks.map((obj) => {
-      if (obj.id !== id) {
-        return obj
-      }
-
-      return {
-        ...obj,
-        width: dimensions.width,
-        height: dimensions.height
-      }
-    })
-
-    this.setState({masks})
-  }
-
-  onDragStop (id, ui) {
-    const masks = this.state.masks.map((obj) => {
-      if (obj.id !== id) {
-        return obj
-      }
-      return {
-        ...obj,
-        x: ui.position.left,
-        y: ui.position.top
-      }
-    })
-    this.setState({masks})
+  handleMaskChange (mask) {
+    this.setState({masks: mask})
   }
 
   fetchTest (id) {
@@ -133,22 +94,13 @@ class Compare extends Component {
           <button className={$.button} onClick={this.acceptBaseImage}>Accept</button>
         </div>
         <div className={$.content}>
-          { this.state.masks && this.state.masks.map((mask, i) => {
-            return <Rnd
-              key={i}
-              initial={initialPosition}
-              style={maskStyle}
-              bounds={'parent'}
-              onResizeStop={(dir, dim) => this.onResize(i, dim)}
-              onDragStop={(e, ui) => this.onDragStop(i, ui)}
-            />
-          })
-          }
           { this.state.result &&
               <ImageCompare
                 image={this.state.result.image}
                 baseimage={this.state.result.baseimage}
                 diffimage={this.state.result.diffimage}
+                mask={this.state.masks}
+                onMaskChange={this.handleMaskChange}
               />
           }
         </div>

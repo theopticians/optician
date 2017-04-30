@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import cx from 'classnames'
 
+import Mask from './Mask'
+
 import $ from './ImageCompare.css'
 
 class ImageCompare extends Component {
@@ -12,6 +14,12 @@ class ImageCompare extends Component {
     this.handleMouseDown = this.handleMouseDown.bind(this)
     this.handleMouseUp = this.handleMouseUp.bind(this)
     this.handleMouseMove = this.handleMouseMove.bind(this)
+  }
+
+  onMaskDragStart (e) {
+    if (typeof e.stopPropagation == "function") {
+      e.stopPropagation()
+    }
   }
 
   handleMouseDown () {
@@ -26,8 +34,8 @@ class ImageCompare extends Component {
     if (this.state.dragging) {
       this.setState({
         translate: {
-          x: this.state.translate.x + e.screenX - this.lastMouseX,
-          y: this.state.translate.y + e.screenY - this.lastMouseY,
+          x: this.state.translate.x + (e.screenX - this.lastMouseX) / this.state.scale,
+          y: this.state.translate.y + (e.screenY - this.lastMouseY) / this.state.scale,
         }
       })
     }
@@ -52,6 +60,9 @@ class ImageCompare extends Component {
           <div className={cx($.imageWrapper, smoothTransform)}  style={{transform: transformStyle}} >
             <img className={cx($.image)} src={`${process.env.OPTICIAN_API_URL}/image/${this.props.baseimage}`}/>
             <img className={cx($.image, $.diff)} src={`${process.env.OPTICIAN_API_URL}/image/${this.props.diffimage}`}/>
+            <div className={$.maskWrapper}>
+              <Mask masks={this.props.mask} onChange={this.props.onMaskChange} />
+            </div>
           </div>
         </div>
         <div className={$.imageSplit} >
