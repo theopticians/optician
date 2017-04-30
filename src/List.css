@@ -21,6 +21,7 @@
 	padding: 13px;
 	font-size: 12px;
 	position: relative;
+  font-weight: 600;
 }
 
 .result.active{
