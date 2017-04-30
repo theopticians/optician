@@ -6,8 +6,7 @@ class Header extends Component {
     return (
       <div className={$.root}>
         <div className={$.brand}>
-          <div className={$.logo}>
-          </div>
+          <div className={$.logo} />
           <h1>Optician</h1>
         </div>
       </div>

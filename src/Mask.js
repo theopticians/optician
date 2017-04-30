@@ -31,7 +31,7 @@ class Mask extends Component {
   }
 
   onMaskDragStart (e) {
-    if (typeof e.stopPropagation == "function") {
+    if (typeof e.stopPropagation === 'function') {
       e.stopPropagation()
     }
   }

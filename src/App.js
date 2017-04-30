@@ -49,13 +49,13 @@ class App extends Component {
         </div>
         <div className={$.navTests}>
           { this.state.tests.length &&
-              <List items={this.state.tests} selected={this.state.id} onClick={this.handleClick} />
+          <List items={this.state.tests} selected={this.state.id} onClick={this.handleClick} />
           }
         </div>
         <div className={$.mainWrapper}>
           <div className={$.main}>
             { this.state.id &&
-                <Compare id={this.state.id} />
+            <Compare id={this.state.id} />
             }
           </div>
         </div>

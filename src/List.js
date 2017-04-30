@@ -5,9 +5,9 @@ import cx from 'classnames'
 import $ from './List.css'
 
 class ListItem extends Component {
-  render(){
+  render () {
     const {result, active, onClick} = this.props
-    const style = cx($.result,{
+    const style = cx($.result, {
       [$.passed]: result.diffscore === 0,
       [$.failed]: result.diffscore > 0,
       [$.active]: active
@@ -17,17 +17,17 @@ class ListItem extends Component {
       onClick={() => onClick(result.id)}
     >
       <p className={$.id}>
-        {result.id} 
+        {result.id}
       </p>
       <p className={$.time}>
-        {moment(result.timestamp).fromNow()} 
+        {moment(result.timestamp).fromNow()}
       </p>
       {result.diffscore > 0 &&
-				<div className={$.failedIndicator}/>
-			}
+        <div className={$.failedIndicator} />
+      }
       {active &&
-				<div className={$.triangle}/>
-			}
+        <div className={$.triangle} />
+      }
     </li>
   }
 }

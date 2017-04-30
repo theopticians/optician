@@ -95,12 +95,12 @@ class Compare extends Component {
         </div>
         <div className={$.content}>
           { this.state.result &&
-              <ImageCompare
-                image={this.state.result.image}
-                baseimage={this.state.result.baseimage}
-                diffimage={this.state.result.diffimage}
-                mask={this.state.masks}
-                onMaskChange={this.handleMaskChange}
+          <ImageCompare
+            image={this.state.result.image}
+            baseimage={this.state.result.baseimage}
+            diffimage={this.state.result.diffimage}
+            mask={this.state.masks}
+            onMaskChange={this.handleMaskChange}
               />
           }
         </div>

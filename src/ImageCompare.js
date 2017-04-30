@@ -18,13 +18,13 @@ class ImageCompare extends Component {
   }
 
   onMaskDragStart (e) {
-    if (typeof e.stopPropagation == "function") {
+    if (typeof e.stopPropagation === 'function') {
       e.stopPropagation()
     }
   }
 
   handleWheel (e) {
-    let newScale =  this.state.scale / (1 + e.deltaY * 0.002)
+    let newScale = this.state.scale / (1 + e.deltaY * 0.002)
     if (newScale > 3) {
       newScale = 3
     }
@@ -57,7 +57,7 @@ class ImageCompare extends Component {
       this.setState({
         translate: {
           x: this.state.translate.x + (e.screenX - this.lastMouseX) / this.state.scale,
-          y: this.state.translate.y + (e.screenY - this.lastMouseY) / this.state.scale,
+          y: this.state.translate.y + (e.screenY - this.lastMouseY) / this.state.scale
         }
       })
     }
@@ -80,18 +80,18 @@ class ImageCompare extends Component {
         onWheel={this.handleWheel}
       >
         <div className={$.imageSplit} >
-          <div className={cx($.imageWrapper, smoothTransform)}  style={{transform: transformStyle}} >
-            <img className={cx($.image)} src={`${process.env.OPTICIAN_API_URL}/image/${this.props.baseimage}`}/>
-            <img className={cx($.image, $.diff)} src={`${process.env.OPTICIAN_API_URL}/image/${this.props.diffimage}`}/>
+          <div className={cx($.imageWrapper, smoothTransform)} style={{transform: transformStyle}} >
+            <img className={cx($.image)} src={`${process.env.OPTICIAN_API_URL}/image/${this.props.baseimage}`} />
+            <img className={cx($.image, $.diff)} src={`${process.env.OPTICIAN_API_URL}/image/${this.props.diffimage}`} />
             <div className={$.maskWrapper}>
               <Mask masks={this.props.mask} onChange={this.props.onMaskChange} />
             </div>
           </div>
         </div>
         <div className={$.imageSplit} >
-          <div className={cx($.imageWrapper, smoothTransform)}  style={{transform: transformStyle}} >
-            <img className={cx($.image)} src={`${process.env.OPTICIAN_API_URL}/image/${this.props.image}`}/>
-            <img className={cx($.image, $.diff)} src={`${process.env.OPTICIAN_API_URL}/image/${this.props.diffimage}`}/>
+          <div className={cx($.imageWrapper, smoothTransform)} style={{transform: transformStyle}} >
+            <img className={cx($.image)} src={`${process.env.OPTICIAN_API_URL}/image/${this.props.image}`} />
+            <img className={cx($.image, $.diff)} src={`${process.env.OPTICIAN_API_URL}/image/${this.props.diffimage}`} />
           </div>
         </div>
       </div>
