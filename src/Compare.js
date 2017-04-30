@@ -14,14 +14,14 @@ const initialPosition = {
   height: 50
 }
 
-const style = {
+const maskStyle = {
   textAlign: 'center',
-  border: '1px solid #fff',
+  border: '2px solid rgb(255, 113, 113)',
   borderRadius: '3px',
   color: '#fff',
   display: 'flex',
   alignItems: 'center',
-  backgroundColor: 'red',
+  backgroundColor: 'rgba(255, 113, 113, 0.5)',
   justifyContent: 'center'
 }
 
@@ -137,7 +137,7 @@ class Compare extends Component {
             return <Rnd
               key={i}
               initial={initialPosition}
-              style={style}
+              style={maskStyle}
               bounds={'parent'}
               onResizeStop={(dir, dim) => this.onResize(i, dim)}
               onDragStop={(e, ui) => this.onDragStop(i, ui)}
