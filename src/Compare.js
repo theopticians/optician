@@ -54,7 +54,28 @@ class Compare extends Component {
   }
 
   saveMasks () {
-    console.log(this.props.box)
+    let formattedMasks = this.state.masks.map((mask) => {
+      return {
+        Min: {X: mask.x, Y: mask.y},
+        Max: {X: mask.x + mask.width, Y: mask.y + mask.height}
+      }
+    })
+
+    fetch(`${process.env.OPTICIAN_API_URL}/results/${this.props.id}/mask`, {
+      method: 'POST',
+      body: JSON.stringify(formattedMasks),
+      header: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(function (response) {
+      if (response.status >= 400) {
+        return response.json()
+      }
+
+      console.log('New masks!')
+    })
   }
 
   handleMaskChange (mask) {
@@ -90,7 +111,7 @@ class Compare extends Component {
       <div className={$.root}>
         <div className={$.toolbar}>
           <button className={$.button} onClick={this.addMask}>Add Mask</button>
-          <button className={$.button} onClick={this.saveMaSave}>Save Masks</button>
+          <button className={$.button} onClick={this.saveMasks}>Save Masks</button>
           <button className={$.button} onClick={this.acceptBaseImage}>Accept</button>
         </div>
         <div className={$.content}>
