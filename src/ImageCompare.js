@@ -51,9 +51,6 @@ class ImageCompare extends Component {
         return
       }
 
-      console.log(this.state.translate.x + (e.screenX - this.lastMouseX) / this.state.scale,
-          this.state.translate.y + (e.screenY - this.lastMouseY) / this.state.scale)
-
       this.setState({
         translate: {
           x: this.state.translate.x + (e.screenX - this.lastMouseX) / this.state.scale,
