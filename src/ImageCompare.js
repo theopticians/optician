@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import cx from 'classnames'
 
-import Mask from './Mask'
 
 import $ from './ImageCompare.css'
 
@@ -80,22 +79,29 @@ class ImageCompare extends Component {
           <div className={cx($.imageWrapper, smoothTransform)} style={{transform: transformStyle}} >
             <img className={cx($.image)} src={`${process.env.OPTICIAN_API_URL}/image/${this.props.baseimage}`} />
             <img className={cx($.image, $.diff)} src={`${process.env.OPTICIAN_API_URL}/image/${this.props.diffimage}`} />
-            <div className={$.maskWrapper}>
-              <Mask masks={this.props.mask} onChange={this.props.onMaskChange} />
-            </div>
-          </div>
+            {this.props.children.map((child, i) => {
+              return <div key={i} className={$.layersWrapper}>
+                {child}
+              </div>
+            })}
+      </div>
+      </div>
+      <div className={$.imageSplit} >
+        <div className={cx($.imageWrapper, smoothTransform)} style={{transform: transformStyle}} >
+          <img className={cx($.image)} src={`${process.env.OPTICIAN_API_URL}/image/${this.props.image}`} />
+          <img className={cx($.image, $.diff)} src={`${process.env.OPTICIAN_API_URL}/image/${this.props.diffimage}`} />
+            {this.props.children.map((child, i) => {
+              return <div key={i} className={$.layersWrapper}>
+                {child}
+              </div>
+            })}
         </div>
-        <div className={$.imageSplit} >
-          <div className={cx($.imageWrapper, smoothTransform)} style={{transform: transformStyle}} >
-            <img className={cx($.image)} src={`${process.env.OPTICIAN_API_URL}/image/${this.props.image}`} />
-            <img className={cx($.image, $.diff)} src={`${process.env.OPTICIAN_API_URL}/image/${this.props.diffimage}`} />
-          </div>
-        </div>
+      </div>
       </div>
 
     )
   }
-}
+  }
 
-export default ImageCompare
+  export default ImageCompare
 

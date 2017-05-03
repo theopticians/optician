@@ -41,9 +41,10 @@
   left: 0;
   top: 0;
   mix-blend-mode: difference;
+  opacity: 0;
 }
 
-.maskWrapper {
+.layersWrapper {
   position: absolute;
   left: 0;
   right: 0;

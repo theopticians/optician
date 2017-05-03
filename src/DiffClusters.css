@@ -1,0 +1,14 @@
+.root {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+}
+
+.square {
+	position: absolute;
+	border: 1px dashed purple;
+	background: rgba(128, 0, 128, 0.3);<Paste>
+	border-radius: 2px;
+}

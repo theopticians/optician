@@ -5,6 +5,8 @@ import fetch from 'isomorphic-fetch'
 import $ from './Compare.css'
 
 import ImageCompare from './ImageCompare'
+import Mask from './Mask'
+import DiffClusters from './DiffClusters'
 
 const initialPosition = {
   x: 0,
@@ -44,38 +46,31 @@ class Compare extends Component {
         'Content-Type': 'application/json'
       }
     })
-    .then(function (response) {
-      if (response.status >= 400) {
-        return response.json()
-      }
+      .then(function (response) {
+        if (response.status >= 400) {
+          return response.json()
+        }
 
-      console.log('Accepted!')
-    })
+        console.log('Accepted!')
+      })
   }
 
   saveMasks () {
-    let formattedMasks = this.state.masks.map((mask) => {
-      return {
-        Min: {X: mask.x, Y: mask.y},
-        Max: {X: mask.x + mask.width, Y: mask.y + mask.height}
-      }
-    })
-
     fetch(`${process.env.OPTICIAN_API_URL}/results/${this.props.id}/mask`, {
       method: 'POST',
-      body: JSON.stringify(formattedMasks),
+      body: JSON.stringify(this.state.masks),
       header: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       }
     })
-    .then(function (response) {
-      if (response.status >= 400) {
-        return response.json()
-      }
+      .then(function (response) {
+        if (response.status >= 400) {
+          return response.json()
+        }
 
-      console.log('New masks!')
-    })
+        console.log('New masks!')
+      })
   }
 
   handleMaskChange (mask) {
@@ -116,13 +111,15 @@ class Compare extends Component {
         </div>
         <div className={$.content}>
           { this.state.result &&
-          <ImageCompare
-            image={this.state.result.image}
-            baseimage={this.state.result.baseimage}
-            diffimage={this.state.result.diffimage}
-            mask={this.state.masks}
-            onMaskChange={this.handleMaskChange}
-              />
+            <ImageCompare
+              image={this.state.result.image}
+              baseimage={this.state.result.baseimage}
+              diffimage={this.state.result.diffimage}
+            >
+              <Mask masks={this.state.masks} onChange={this.handleMaskChange} />
+              <DiffClusters
+                clusters={this.state.result.diffclusters} />
+            </ImageCompare>
           }
         </div>
       </div>
