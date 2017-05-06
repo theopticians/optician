@@ -16,8 +16,7 @@ class DiffClusters extends Component {
               width: cluster.width,
               height: cluster.height
             }}
-          >
-          </div>
+           />
         })
         }
       </div>

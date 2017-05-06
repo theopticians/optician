@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Compare from './Compare'
-import List from './List'
+import BatchList from './BatchList'
+import BatchView from './BatchView'
 import Header from './Header'
 
 import fetch from 'isomorphic-fetch'
@@ -12,15 +13,17 @@ class App extends Component {
     super(...args)
 
     this.state = {
-      id: null,
-      tests: []
+      selectedBatch: null,
+      selectedTest: null,
+      batches: []
     }
 
-    this.handleClick = this.handleClick.bind(this)
+    this.handleBatchSelect = this.handleBatchSelect.bind(this)
+    this.handleTestSelect = this.handleTestSelect.bind(this)
   }
 
-  fetchTests () {
-    fetch(`${process.env.OPTICIAN_API_URL}/results`)
+  fetchBatches () {
+    fetch(`${process.env.OPTICIAN_API_URL}/batches`)
       .then(function (response) {
         if (response.status >= 400) {
           throw new Error('Bad response from server')
@@ -29,16 +32,20 @@ class App extends Component {
         return response.json()
       })
       .then((response) => {
-        this.setState({ tests: response })
+        this.setState({ selectedBatch: response[0].id, batches: response })
       })
   }
 
-  handleClick (id) {
-    this.setState({ id })
+  handleBatchSelect (id) {
+    this.setState({ selectedTest: null, selectedBatch: id })
+  }
+
+  handleTestSelect (id) {
+    this.setState({ selectedTest: id })
   }
 
   componentWillMount () {
-    this.fetchTests()
+    this.fetchBatches()
   }
 
   render () {
@@ -48,14 +55,15 @@ class App extends Component {
           <Header />
         </div>
         <div className={$.navTests}>
-          { this.state.tests.length &&
-          <List items={this.state.tests} selected={this.state.id} onClick={this.handleClick} />
+          { this.state.batches.length &&
+          <BatchList items={this.state.batches} selected={this.state.selectedBatch} onClick={this.handleBatchSelect} />
           }
         </div>
         <div className={$.mainWrapper}>
           <div className={$.main}>
-            { this.state.id &&
-            <Compare id={this.state.id} />
+            { this.state.selectedTest == null
+              ? <BatchView id={this.state.selectedBatch} onSelectTest={this.handleTestSelect} />
+              : <Compare id={this.state.selectedTest} />
             }
           </div>
         </div>
@@ -65,4 +73,3 @@ class App extends Component {
 }
 
 export default App
-
