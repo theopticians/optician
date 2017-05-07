@@ -1,0 +1,67 @@
+.root {
+	height: 100%;
+	text-align: left;
+	list-style-type: none;
+	font-size: 14px;
+	margin: 0px;
+	padding: 0;
+
+	background: #3B2F47;
+
+	color: #F6F6F6;
+}
+
+.batch {
+	height: 60px;
+	padding: 6px;
+	cursor: pointer;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: 13px;
+	font-size: 12px;
+	position: relative;
+  font-weight: 600;
+}
+
+.batch.active{
+background: rgb(80, 67, 93);
+  box-shadow: 0 0 5px 0 rgba(0,0,0,0.16);
+}
+
+.batch.failed {
+	color: #FF7171;
+}
+
+.batch .failedIndicator{
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background: #FF7171;
+	position: absolute;
+	right: 20px;
+	top: 20px;
+
+}
+
+.triangle{
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 30px 0 30px 10px;
+	border-color: transparent transparent transparent rgb(80, 67, 93);
+	position: absolute;
+	top: 0;
+	right: -10px;
+}
+
+
+.time {
+	margin: 0;
+	color: rgb(159, 146, 173)
+}
+
+.project {
+	margin: 0;
+}
+
