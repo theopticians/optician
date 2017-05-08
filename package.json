@@ -8,9 +8,11 @@
     "isomorphic-fetch": "^2.2.1",
     "jimp": "^0.2.27",
     "moment": "^2.18.1",
+    "node-sass": "^4.5.2",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
-    "react-rnd": "^4.2.2"
+    "react-rnd": "^4.2.2",
+    "sass-loader": "^6.0.3"
   },
   "devDependencies": {
     "autoprefixer": "6.7.2",

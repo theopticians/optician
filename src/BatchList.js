@@ -1,8 +1,8 @@
-import React, { PropTypes, Component } from 'react'
+import React, {PropTypes, Component} from 'react'
 import moment from 'moment'
 import cx from 'classnames'
 
-import $ from './BatchList.css'
+import $ from './BatchList.scss'
 
 class ListItem extends Component {
   render () {
@@ -11,23 +11,18 @@ class ListItem extends Component {
       [$.failed]: batch.failed > 0,
       [$.active]: active
     })
-    return <li
-      className={style}
-      onClick={() => onClick(batch.id)}
-    >
-      <p className={$.project}>
-        {batch.project}
-      </p>
-      <p className={$.time}>
-        {moment(batch.timestamp).fromNow()}
-      </p>
-      {batch.failed > 0 &&
-        <div className={$.failedIndicator} />
-      }
-      {active &&
-        <div className={$.triangle} />
-      }
-    </li>
+    return (
+      <li className={style} onClick={() => onClick(batch.id)}>
+        <p className={$.project}>
+          {batch.project}
+        </p>
+        <p className={$.time}>
+          {moment(batch.timestamp).fromNow()}
+        </p>
+        {batch.failed > 0 && <div className={$.failedIndicator} />}
+        {active && <div className={$.triangle} />}
+      </li>
+    )
   }
 }
 
@@ -46,11 +41,16 @@ class BatchList extends Component {
     const {selected} = this.props
     return (
       <ul className={$.root}>
-        {
-          this.props.items.map((batch) => {
-            return <ListItem key={batch.id} batch={batch} active={batch.id === selected} onClick={this.handleClick} />
-          })
-        }
+        {this.props.items.map(batch => {
+          return (
+            <ListItem
+              key={batch.id}
+              batch={batch}
+              active={batch.id === selected}
+              onClick={this.handleClick}
+            />
+          )
+        })}
       </ul>
     )
   }

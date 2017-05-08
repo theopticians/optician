@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 
 import fetch from 'isomorphic-fetch'
 
-import $ from './Compare.css'
+import $ from './Compare.scss'
 
 import ImageCompare from './ImageCompare'
 import Mask from './Mask'
@@ -23,7 +23,7 @@ class Compare extends Component {
     this.addMask = this.addMask.bind(this)
     this.acceptBaseImage = this.acceptBaseImage.bind(this)
     this.saveMasks = this.saveMasks.bind(this)
-    this.state = { test: {}, masks: [] }
+    this.state = {test: {}, masks: []}
   }
 
   addMask () {
@@ -42,17 +42,16 @@ class Compare extends Component {
     fetch(`${process.env.OPTICIAN_API_URL}/results/${this.props.id}/accept`, {
       method: 'POST',
       header: {
-        'Accept': 'application/json',
+        Accept: 'application/json',
         'Content-Type': 'application/json'
       }
-    })
-      .then(function (response) {
-        if (response.status >= 400) {
-          return response.json()
-        }
+    }).then(function (response) {
+      if (response.status >= 400) {
+        return response.json()
+      }
 
-        console.log('Accepted!')
-      })
+      console.log('Accepted!')
+    })
   }
 
   saveMasks () {
@@ -60,17 +59,16 @@ class Compare extends Component {
       method: 'POST',
       body: JSON.stringify(this.state.masks),
       header: {
-        'Accept': 'application/json',
+        Accept: 'application/json',
         'Content-Type': 'application/json'
       }
-    })
-      .then(function (response) {
-        if (response.status >= 400) {
-          return response.json()
-        }
+    }).then(function (response) {
+      if (response.status >= 400) {
+        return response.json()
+      }
 
-        console.log('New masks!')
-      })
+      console.log('New masks!')
+    })
   }
 
   handleMaskChange (mask) {
@@ -86,8 +84,8 @@ class Compare extends Component {
 
         return response.json()
       })
-      .then((compareResult) => {
-        this.setState({ result: compareResult, id: id })
+      .then(compareResult => {
+        this.setState({result: compareResult, id: id})
       })
   }
 
@@ -102,25 +100,34 @@ class Compare extends Component {
   }
 
   render () {
+    if (this.state.result == null) {
+      return <span>Loading...</span>
+    }
+
     return (
       <div className={$.root}>
         <div className={$.toolbar}>
+          <div className={$.info}>
+            <div>{this.state.result.target}</div>
+            <div>{this.state.result.browser}</div>
+          </div>
           <button className={$.button} onClick={this.addMask}>Add Mask</button>
-          <button className={$.button} onClick={this.saveMasks}>Save Masks</button>
-          <button className={$.button} onClick={this.acceptBaseImage}>Accept</button>
+          <button className={$.button} onClick={this.saveMasks}>
+            Save Masks
+          </button>
+          <button className={$.button} onClick={this.acceptBaseImage}>
+            Accept
+          </button>
         </div>
         <div className={$.content}>
-          { this.state.result &&
-            <ImageCompare
-              image={this.state.result.image}
-              baseimage={this.state.result.baseimage}
-              diffimage={this.state.result.diffimage}
-            >
-              <Mask masks={this.state.masks} onChange={this.handleMaskChange} />
-              <DiffClusters
-                clusters={this.state.result.diffclusters} />
-            </ImageCompare>
-          }
+          <ImageCompare
+            image={this.state.result.image}
+            baseimage={this.state.result.baseimage}
+            diffimage={this.state.result.diffimage}
+          >
+            <Mask masks={this.state.masks} onChange={this.handleMaskChange} />
+            <DiffClusters clusters={this.state.result.diffclusters} />
+          </ImageCompare>
         </div>
       </div>
     )

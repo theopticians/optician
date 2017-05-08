@@ -1,17 +1,17 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import fetch from 'isomorphic-fetch'
 
 import cx from 'classnames'
 
-import $ from './BatchView.css'
+import $ from './BatchView.scss'
 
 class BatchViewHeader extends Component {
   render () {
-    const { project, branch } = this.props
+    const {project, branch} = this.props
 
     return (
       <div className={$.header}>
-        <div>
+        <div className={$.title}>
           {project}
         </div>
         <div>
@@ -34,18 +34,15 @@ class BatchViewItem extends Component {
   }
 
   render () {
-    const { result } = this.props
+    const {result} = this.props
 
-    const style = cx(
-      $.result,
-      {
-        [$.failed]: result.diffscore > 0
-      }
-    )
+    const style = cx($.result, {
+      [$.failed]: result.diffscore > 0
+    })
 
     return (
       <div className={style} onClick={this.onClick}>
-        {result.id}
+        {result.diffscore > 0 ? result.diffclusters.length + ' changes' : 'ok'}
       </div>
     )
   }
@@ -85,27 +82,65 @@ class BatchView extends Component {
 
         return response.json()
       })
-      .then((response) => {
-        this.setState({ results: response })
+      .then(response => {
+        this.setState({results: response})
       })
   }
 
   render () {
-    if (this.state.results.length === 0){
+    if (this.state.results.length === 0) {
       return <p> Loading... </p>
     }
+
+    const browsers = [...new Set(this.state.results.map(r => r.browser))].sort()
+    const targets = [...new Set(this.state.results.map(r => r.target))].sort()
 
     return (
       <div className={$.root}>
         <BatchViewHeader
-          project={this.state.results[0].project} 
-          branch={this.state.results[0].branch} 
+          project={this.state.results[0].project}
+          branch={this.state.results[0].branch}
         />
-        {
-          this.state.results.map((result) => {
-            return <BatchViewItem key={result.id} result={result} onClick={this.onSelectTest} />
-          })
-        }
+        <table className={$.table}>
+          <thead>
+            <tr>
+              <th className={$.edge} />
+              {browsers.map(browser => {
+                return <th className={$.browser} key={browser}>{browser}</th>
+              })}
+            </tr>
+          </thead>
+          <tbody>
+            {targets.map(target => {
+              return (
+                <tr key={target}>
+                  <td className={$.target}>{target}</td>
+                  {browsers.map((browser, i) => {
+                    const test = this.state.results.find(
+                      r => r.browser === browser && r.target === target
+                    )
+                    if (test == null) {
+                      return <td key={i} />
+                    }
+
+                    const testStyle = cx($.test, {
+                      [$.failed]: test.diffscore > 0
+                    })
+
+                    return (
+                      <td className={testStyle} key={i}>
+                        <BatchViewItem
+                          result={test}
+                          onClick={this.onSelectTest}
+                        />
+                      </td>
+                    )
+                  })}
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
       </div>
     )
   }

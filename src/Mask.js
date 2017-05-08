@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import Rnd from 'react-rnd'
 
-import $ from './Mask.css'
+import $ from './Mask.scss'
 
 const initialPosition = {
   x: 0,
@@ -37,7 +37,7 @@ class Mask extends Component {
   }
 
   onResize (id, dimensions) {
-    const masks = this.props.masks.map((obj) => {
+    const masks = this.props.masks.map(obj => {
       if (obj.id !== id) {
         return obj
       }
@@ -53,7 +53,7 @@ class Mask extends Component {
   }
 
   onDragStop (id, ui) {
-    const masks = this.props.masks.map((obj) => {
+    const masks = this.props.masks.map(obj => {
       if (obj.id !== id) {
         return obj
       }
@@ -69,18 +69,20 @@ class Mask extends Component {
   render () {
     return (
       <div className={$.root}>
-        { this.props.masks && this.props.masks.map((mask, i) => {
-          return <Rnd
-            key={i}
-            initial={initialPosition}
-            style={maskStyle}
-            bounds={'parent'}
-            onResizeStop={(dir, dim) => this.onResize(i, dim)}
-            onDragStop={(e, ui) => this.onDragStop(i, ui)}
-            onDragStart={(e, ui) => this.onMaskDragStart(e)}
-          />
-        })
-        }
+        {this.props.masks &&
+          this.props.masks.map((mask, i) => {
+            return (
+              <Rnd
+                key={i}
+                initial={initialPosition}
+                style={maskStyle}
+                bounds={'parent'}
+                onResizeStop={(dir, dim) => this.onResize(i, dim)}
+                onDragStop={(e, ui) => this.onDragStop(i, ui)}
+                onDragStart={(e, ui) => this.onMaskDragStart(e)}
+              />
+            )
+          })}
       </div>
     )
   }

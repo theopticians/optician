@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import cx from 'classnames'
 
-import $ from './ImageCompare.css'
+import $ from './ImageCompare.scss'
 
 class ImageCompare extends Component {
   constructor () {
     super()
 
-    this.state = { dragging: false, scale: 0.9, translate: {x: 0, y: 0} }
+    this.state = {dragging: false, scale: 0.9, translate: {x: 0, y: 0}}
 
     this.handleMouseDown = this.handleMouseDown.bind(this)
     this.handleMouseUp = this.handleMouseUp.bind(this)
@@ -35,24 +35,26 @@ class ImageCompare extends Component {
   }
 
   handleMouseDown () {
-    this.setState({ dragging: true })
+    this.setState({dragging: true})
   }
 
   handleMouseUp () {
-    this.setState({ dragging: false })
+    this.setState({dragging: false})
   }
 
   handleMouseMove (e) {
     if (this.state.dragging) {
       if (e.buttons <= 0) {
-        this.setState({ dragging: false })
+        this.setState({dragging: false})
         return
       }
 
       this.setState({
         translate: {
-          x: this.state.translate.x + (e.screenX - this.lastMouseX) / this.state.scale,
-          y: this.state.translate.y + (e.screenY - this.lastMouseY) / this.state.scale
+          x: this.state.translate.x +
+            (e.screenX - this.lastMouseX) / this.state.scale,
+          y: this.state.translate.y +
+            (e.screenY - this.lastMouseY) / this.state.scale
         }
       })
     }
@@ -64,7 +66,7 @@ class ImageCompare extends Component {
   render () {
     let transformStyle = `scale(${this.state.scale}) translateX(${this.state.translate.x}px) translateY(${this.state.translate.y}px)`
 
-    let smoothTransform = { [$.smoothTransform]: !this.state.dragging }
+    let smoothTransform = {[$.smoothTransform]: !this.state.dragging}
 
     return (
       <div
@@ -74,32 +76,53 @@ class ImageCompare extends Component {
         onMouseMove={this.handleMouseMove}
         onWheel={this.handleWheel}
       >
-        <div className={$.imageSplit} >
-          <div className={cx($.imageWrapper, smoothTransform)} style={{transform: transformStyle}} >
-            <img className={cx($.image)} src={`${process.env.OPTICIAN_API_URL}/image/${this.props.baseimage}`} />
-            <img className={cx($.image, $.diff)} src={`${process.env.OPTICIAN_API_URL}/image/${this.props.diffimage}`} />
+        <div className={$.imageSplit}>
+          <div
+            className={cx($.imageWrapper, smoothTransform)}
+            style={{transform: transformStyle}}
+          >
+            <img
+              className={cx($.image)}
+              src={`${process.env.OPTICIAN_API_URL}/image/${this.props.baseimage}`}
+            />
+            <img
+              className={cx($.image, $.diff)}
+              src={`${process.env.OPTICIAN_API_URL}/image/${this.props.diffimage}`}
+            />
             {this.props.children.map((child, i) => {
-              return <div key={i} className={$.layersWrapper}>
-                {child}
-              </div>
+              return (
+                <div key={i} className={$.layersWrapper}>
+                  {child}
+                </div>
+              )
             })}
           </div>
         </div>
-        <div className={$.imageSplit} >
-          <div className={cx($.imageWrapper, smoothTransform)} style={{transform: transformStyle}} >
-            <img className={cx($.image)} src={`${process.env.OPTICIAN_API_URL}/image/${this.props.image}`} />
-            <img className={cx($.image, $.diff)} src={`${process.env.OPTICIAN_API_URL}/image/${this.props.diffimage}`} />
+        <div className={$.imageSplit}>
+          <div
+            className={cx($.imageWrapper, smoothTransform)}
+            style={{transform: transformStyle}}
+          >
+            <img
+              className={cx($.image)}
+              src={`${process.env.OPTICIAN_API_URL}/image/${this.props.image}`}
+            />
+            <img
+              className={cx($.image, $.diff)}
+              src={`${process.env.OPTICIAN_API_URL}/image/${this.props.diffimage}`}
+            />
             {this.props.children.map((child, i) => {
-              return <div key={i} className={$.layersWrapper}>
-                {child}
-              </div>
+              return (
+                <div key={i} className={$.layersWrapper}>
+                  {child}
+                </div>
+              )
             })}
           </div>
         </div>
       </div>
-
     )
   }
-  }
+}
 
 export default ImageCompare

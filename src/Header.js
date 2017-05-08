@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import $ from './Header.css'
+import React, {Component} from 'react'
+import $ from './Header.scss'
 
 class Header extends Component {
   render () {

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import Compare from './Compare'
 import BatchList from './BatchList'
 import BatchView from './BatchView'
@@ -6,7 +6,7 @@ import Header from './Header'
 
 import fetch from 'isomorphic-fetch'
 
-import $ from './App.css'
+import $ from './App.scss'
 
 class App extends Component {
   constructor (...args) {
@@ -31,17 +31,17 @@ class App extends Component {
 
         return response.json()
       })
-      .then((response) => {
-        this.setState({ selectedBatch: response[0].id, batches: response })
+      .then(response => {
+        this.setState({selectedBatch: response[0].id, batches: response})
       })
   }
 
   handleBatchSelect (id) {
-    this.setState({ selectedTest: null, selectedBatch: id })
+    this.setState({selectedTest: null, selectedBatch: id})
   }
 
   handleTestSelect (id) {
-    this.setState({ selectedTest: id })
+    this.setState({selectedTest: id})
   }
 
   componentWillMount () {
@@ -55,16 +55,21 @@ class App extends Component {
           <Header />
         </div>
         <div className={$.navTests}>
-          { this.state.batches.length &&
-          <BatchList items={this.state.batches} selected={this.state.selectedBatch} onClick={this.handleBatchSelect} />
-          }
+          {this.state.batches.length &&
+            <BatchList
+              items={this.state.batches}
+              selected={this.state.selectedBatch}
+              onClick={this.handleBatchSelect}
+            />}
         </div>
         <div className={$.mainWrapper}>
           <div className={$.main}>
-            { this.state.selectedTest == null
-              ? <BatchView id={this.state.selectedBatch} onSelectTest={this.handleTestSelect} />
-              : <Compare id={this.state.selectedTest} />
-            }
+            {this.state.selectedTest == null
+              ? <BatchView
+                  id={this.state.selectedBatch}
+                  onSelectTest={this.handleTestSelect}
+                />
+              : <Compare id={this.state.selectedTest} />}
           </div>
         </div>
       </div>

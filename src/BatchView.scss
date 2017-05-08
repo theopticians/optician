@@ -1,0 +1,80 @@
+.root {
+  font-size: 14px;
+  height: 100%;
+  background: #F6F6F6;
+
+}
+
+.table{
+  color: #4F4F4F;
+  border-collapse: collapse;
+
+  th, td {
+    padding: 0;
+  }
+
+  .target{
+    width: 200px;
+    height: 40px;
+    padding-left: 20px;
+    font-weight: 400;
+    border-right: 1px solid rgba(79, 79, 79, 0.5);
+    border-bottom: 1px solid rgba(79, 79, 79, 0.2);
+  }
+
+  .browser{
+    width: 120px;
+    height: 60px;
+    padding-top: 20px;
+    font-weight: 400;
+    border-bottom: 1px solid rgba(79, 79, 79, 0.5);
+    border-right: 1px solid rgba(79, 79, 79, 0.2);
+  }
+
+  .test {
+    width: 120px;
+    height: 40px;
+    border-bottom: 1px solid rgba(79, 79, 79, 0.2);
+    border-right: 1px solid rgba(79, 79, 79, 0.2);
+    background-clip: border-box;
+    background: #51da94;
+
+    .failed {
+      background: #ff7171;
+    }
+  }
+
+  .edge {
+    border-bottom: 1px solid rgba(79, 79, 79, 0.5);
+    border-right: 1px solid rgba(79, 79, 79, 0.5);
+  }
+}
+
+.result {
+  padding: 12px;
+  text-align: center;
+  cursor: pointer;
+  overflow: hidden;
+  width: 120px;
+  height: 40px;
+  background: #51da94;
+  color: white;
+}
+
+.result.failed {
+  background: #ff7171;
+}
+
+.header {
+  height: 60px;
+  padding: 10px;
+  padding-left: 20px;
+  background: #D3D3D3;
+  color: #4F4F4F;
+
+  .title {
+    font-size: 18px;
+  }
+}
+
+
