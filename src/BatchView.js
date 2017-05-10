@@ -14,7 +14,7 @@ class BatchViewHeader extends Component {
         <div className={$.title}>
           {project}
         </div>
-        <div>
+        <div className={$.branch}>
           {branch}
         </div>
       </div>
