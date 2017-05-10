@@ -66,8 +66,8 @@ class App extends Component {
           <div className={$.main}>
             {this.state.selectedTest == null
               ? <BatchView
-                  id={this.state.selectedBatch}
-                  onSelectTest={this.handleTestSelect}
+                id={this.state.selectedBatch}
+                onSelectTest={this.handleTestSelect}
                 />
               : <Compare id={this.state.selectedTest} />}
           </div>
