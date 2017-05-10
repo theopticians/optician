@@ -2,8 +2,14 @@
   font-size: 14px;
   height: 100%;
   background: #F6F6F6;
+
+  display: flex;
+  flex-direction: column;
 }
 
+.mainWrapper {
+  flex: 1;
+}
 
 .header {
   height: 60px;

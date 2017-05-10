@@ -68,14 +68,18 @@ class BatchView extends Component {
 
     return (
       <div className={$.root}>
-        <BatchViewHeader
-          project={this.state.results[0].project}
-          branch={this.state.results[0].branch}
-        />
-        <BatchMatrix
-          results={this.state.results}
-          onSelectTest={this.onSelectTest}
-        />
+        <div className={$.headerWrapper}>
+          <BatchViewHeader
+            project={this.state.results[0].project}
+            branch={this.state.results[0].branch}
+          />
+        </div>
+        <div className={$.mainWrapper}>
+          <BatchMatrix
+            results={this.state.results}
+            onSelectTest={this.onSelectTest}
+          />
+        </div>
       </div>
     )
   }
