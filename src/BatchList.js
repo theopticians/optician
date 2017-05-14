@@ -16,7 +16,7 @@ class ListItem extends Component {
         <p className={$.project}>
           {batch.project}
         </p>
-        <p className={$.time}>
+        <p className={$.time} title={moment(batch.timestamp).format('llll')}>
           {moment(batch.timestamp).fromNow()}
         </p>
         {batch.failed > 0 && <div className={$.failedIndicator} />}
@@ -41,7 +41,9 @@ class BatchList extends Component {
     const {selected} = this.props
     return (
       <ul className={$.root}>
-        {this.props.items.map(batch => {
+        {this.props.items.sort((a, b) => {
+          return moment(b.timestamp).format('x') - moment(a.timestamp).format('x')
+        }).map(batch => {
           return (
             <ListItem
               key={batch.id}
