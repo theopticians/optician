@@ -10,9 +10,9 @@
   display: grid;
   grid-template-columns: 200px 1fr;
   grid-template-rows: 60px 1fr;
-  grid-template-areas: 
-  "header header"
-  "sidebar main";
+  grid-template-areas:
+    "header header"
+    "sidebar main";
 }
 
 .mainWrapper {
@@ -32,11 +32,18 @@
 
 .navTests {
   grid-area: sidebar;
-	z-index: 4;
-  box-shadow: 2px 0 2px 0 rgba(0,0,0,0.15);
+  z-index: 4;
+  box-shadow: 2px 0 2px 0 rgba(0, 0, 0, .15);
 }
 
 .header {
   grid-area: header;
-	z-index: 3;
+  z-index: 3;
+}
+
+.emptyBatch {
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  margin-top: 20px;
 }

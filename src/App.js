@@ -44,6 +44,18 @@ class App extends Component {
     this.setState({selectedTest: id})
   }
 
+  renderBatchList () {
+    if (!this.state.batches.length) {
+      return <span className={$.emptyBatch}>No tests found</span>
+    }
+
+    return <BatchList
+      items={this.state.batches}
+      selected={this.state.selectedBatch}
+      onClick={this.handleBatchSelect}
+    />
+  }
+
   componentWillMount () {
     this.fetchBatches()
   }
@@ -55,12 +67,7 @@ class App extends Component {
           <Header />
         </div>
         <div className={$.navTests}>
-          {this.state.batches.length &&
-            <BatchList
-              items={this.state.batches}
-              selected={this.state.selectedBatch}
-              onClick={this.handleBatchSelect}
-            />}
+          {this.renderBatchList()}
         </div>
         <div className={$.mainWrapper}>
           <div className={$.main}>
