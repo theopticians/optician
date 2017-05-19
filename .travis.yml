@@ -1,0 +1,32 @@
+sudo: required
+dist: trusty
+
+language: node_js
+
+node_js:
+  - "6"
+
+branches:
+  only:
+    - master
+
+cache:
+  directories:
+    - node_modules
+
+env:
+  NODE_ENV: production
+  OPTICIAN_API_URL: http://207.154.231.167:9000
+
+script:
+  - yarn test
+
+after_success:
+  - yarn run build
+
+deploy:
+  provider: script
+  script: yarn run deploy
+  skip_cleanup: true
+  on:
+    branch: master

@@ -22,7 +22,7 @@ function getClientEnvironment (publicUrl) {
       // images into the `src` and `import` them in code to get their paths.
       'PUBLIC_URL': publicUrl,
       // Optician API url
-      'OPTICIAN_API_URL': process.env.OPTICIAN_API_URL || 'http://localhost:8080'
+      'OPTICIAN_API_URL': process.env.OPTICIAN_API_URL || 'http://localhost:9000'
     })
   // Stringify all values so we can feed into Webpack DefinePlugin
   var stringified = {
