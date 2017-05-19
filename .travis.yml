@@ -18,9 +18,6 @@ env:
   NODE_ENV: production
   OPTICIAN_API_URL: http://207.154.231.167:9000
 
-script:
-  - yarn test
-
 after_success:
   - yarn run build
 
