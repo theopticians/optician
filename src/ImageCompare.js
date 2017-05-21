@@ -84,10 +84,12 @@ class ImageCompare extends Component {
             <img
               className={cx($.image)}
               src={`${process.env.OPTICIAN_API_URL}/image/${this.props.baseimage}`}
+              alt=''
             />
             <img
               className={cx($.image, $.diff)}
               src={`${process.env.OPTICIAN_API_URL}/image/${this.props.diffimage}`}
+              alt=''
             />
             {this.props.children.map((child, i) => {
               return (
@@ -106,10 +108,12 @@ class ImageCompare extends Component {
             <img
               className={cx($.image)}
               src={`${process.env.OPTICIAN_API_URL}/image/${this.props.image}`}
+              alt=''
             />
             <img
               className={cx($.image, $.diff)}
               src={`${process.env.OPTICIAN_API_URL}/image/${this.props.diffimage}`}
+              alt=''
             />
             {this.props.children.map((child, i) => {
               return (
